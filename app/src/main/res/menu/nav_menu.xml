@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/ic_product"
+        android:icon="@drawable/ic_baseline_storefront_24"
+        android:title="@string/title_product"/>
+    <item
+        android:id="@+id/ic_promotion"
+        android:icon="@drawable/ic_baseline_favorite_border_24"
+        android:title="@string/title_promotion"/>
+    <item
+        android:id="@+id/ic_video"
+        android:icon="@drawable/ic_baseline_ondemand_video_24"
+        android:title="@string/title_video" />
+</menu>
