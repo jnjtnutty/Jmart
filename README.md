@@ -1,3 +1,3 @@
-[alt text](https://github.com/jnjtnutty/Jmart/blob/master/UI/Google%20Pixel%203XL%20%E2%80%93%201.png)
-[alt text](https://github.com/jnjtnutty/Jmart/blob/master/UI/Google%20Pixel%203XL%20%E2%80%93%202.png)
-[alt text](https://github.com/jnjtnutty/Jmart/blob/master/UI/Google%20Pixel%203XL%20%E2%80%93%203.png)
+![Alt text](Jmart/UI/Google Pixel 3XL – 1.png?raw=true "Product")
+![Alt text](Jmart/UI/Google Pixel 3XL – 2.png?raw=true "Promotion")
+![Alt text](Jmart/UI/Google Pixel 3XL – 3.png?raw=true "Video")
