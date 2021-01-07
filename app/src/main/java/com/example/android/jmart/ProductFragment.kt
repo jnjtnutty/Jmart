@@ -7,20 +7,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import com.example.android.jmart.databinding.FragmentVideoBinding
 
 class ProductFragment : Fragment() {
-    private lateinit var viewModel: ProductViewModel
+//    private lateinit var viewModel: ProductViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        Log.i("ProductFragment","Product Fragment call ProductProvider")
-        viewModel = ViewModelProvider(this).get(ProductViewModel::class.java)
-
+//        Log.i("ProductFragment","Product Fragment call ProductProvider")
+//        viewModel = ViewModelProvider(this).get(ProductViewModel::class.java)
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_product, container, false)
-
-
     }
 }

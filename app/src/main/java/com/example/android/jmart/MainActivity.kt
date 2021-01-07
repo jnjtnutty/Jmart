@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         val videoFragment = VideoFragment()
 
         makeCurrentFragment(productFragment)
-        bottom_navigation.setOnNavigationItemSelectedListener { it:MenuItem->
+        binding.bottomNavigation.setOnNavigationItemSelectedListener { it:MenuItem->
             when(it.itemId){
                 R.id.ic_product -> makeCurrentFragment(productFragment)
                 R.id.ic_promotion -> makeCurrentFragment(promotionFragment)

@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#FFEEEEEE"
+        android:background="@android:color/holo_red_dark"
         app:itemBackground="@android:color/holo_red_dark"
         app:itemIconTint="@color/black"
         app:itemTextColor="@color/white"
