@@ -1,14 +1,14 @@
 package com.example.android.jmart
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.orhanobut.logger.Logger
 
 class ProductViewModel : ViewModel() {
     init {
-        Logger.d("ProductViewModel created")
+        Log.i("ProductViewModel","ProductViewModel created")
     }
     override fun onCleared(){
         super.onCleared()
-        Logger.d("Product destroyed")
+        Log.i("ProductViewModel","Product destroyed")
     }
 }

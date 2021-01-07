@@ -1,13 +1,11 @@
 package com.example.android.jmart
 
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.example.android.jmart.databinding.JmartMainBinding
-import com.orhanobut.logger.AndroidLogAdapter
-import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.jmart_main.*
 
 
@@ -15,7 +13,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: JmartMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Logger.addLogAdapter( AndroidLogAdapter())
 
         binding = JmartMainBinding.inflate(layoutInflater)
         val view = binding.root
