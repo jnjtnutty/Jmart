@@ -21,7 +21,7 @@
         android:layout_alignParentBottom="true"
         android:background="#FFEEEEEE"
         app:itemBackground="@android:color/holo_red_dark"
-        app:itemIconTint="@color/white"
+        app:itemIconTint="@color/black"
         app:itemTextColor="@color/white"
         app:menu="@menu/nav_menu" />
 
