@@ -1,22 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#EEEEEE"
-    tools:context=".ProductFragment">
-
-    <RelativeLayout
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="productViewModel"
+            type="com.example.android.jmart.product.ProductViewModel" />
+    </data>
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#FFEEEEEE"
+        tools:context=".product.ProductFragment"
+        android:orientation="vertical">
 
         <TextView
+            android:id="@+id/productText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="PRODUCT"
-            android:textColor="@color/black"/>
+            android:layout_marginLeft="20dp"
+            android:text="IPhone"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
 
-    </RelativeLayout>
+        <Button
+            android:id="@+id/start_button"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:text="Start"
+            android:onClick="@{() -> productViewModel.onStartProduct()}"/>
+        <Button
+            android:id="@+id/stop_button"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:text="Stop"
+            android:onClick="@{() -> productViewModel.OnStopProduct()}"/>
+        <Button
+            android:id="@+id/clear_button"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="300dp"
+            android:text="Clear"
+            android:onClick="@{() -> productViewModel.onClear()}"/>
 
-</FrameLayout>
+        <Button
+            android:id="@+id/add_button"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="400dp"
+            android:text="Add"
+            android:onClick="@{() -> productViewModel.onAddProduct()}"/>
+
+        <TextView
+            android:id="@+id/showText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="500dp"
+            android:text="@{productViewModel.allProductString}" />
+
+    </FrameLayout>
+</layout>

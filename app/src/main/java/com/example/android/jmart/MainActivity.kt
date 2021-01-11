@@ -2,11 +2,12 @@ package com.example.android.jmart
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.example.android.jmart.databinding.JmartMainBinding
-import kotlinx.android.synthetic.main.jmart_main.*
+import com.example.android.jmart.product.ProductFragment
+import com.example.android.jmart.promotion.PromotionFragment
+import com.example.android.jmart.video.VideoFragment
 
 
 class MainActivity : AppCompatActivity() {

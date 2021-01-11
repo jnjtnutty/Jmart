@@ -19,10 +19,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@android:color/holo_red_dark"
+        app:backgroundTint="@android:color/holo_red_dark"
         app:itemBackground="@android:color/holo_red_dark"
         app:itemIconTint="@color/black"
         app:itemTextColor="@color/white"
         app:menu="@menu/nav_menu" />
+
+<!--    <fragment-->
+<!--        android:id="@+id/productFragment"-->
+<!--        android:name="com.example.android.jmart.product.ProductFragment"-->
+<!--        android:label="ProductFragment"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:defaultNavHost="true"-->
+<!--        android:navGraph="@navigation/navigation"-->
+<!--        />-->
+
+<!--    <fragment-->
+<!--        android:id="@+id/promotionFragment"-->
+<!--        android:name="com.example.android.jmart.promotion.PromotionFragment"-->
+<!--        android:label="PromotionFragment"-->
+<!--        tools:layout="@layout/fragment_promotion"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_width="match_parent" />-->
+
+<!--    <fragment-->
+<!--        android:id="@+id/videoFragment"-->
+<!--        android:name="com.example.android.jmart.video.VideoFragment"-->
+<!--        android:label="VideoFragment"-->
+<!--        tools:layout="@layout/fragment_video"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_width="match_parent" />-->
 
 </RelativeLayout>
