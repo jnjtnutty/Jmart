@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="productViewModel"
             type="com.example.android.jmart.product.ProductViewModel" />
     </data>
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="#FFEEEEEE"
         tools:context=".product.ProductFragment"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:layout_margin="1dp">
 
-        <TextView
-            android:id="@+id/productText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="IPhone"
-            android:textColor="@color/black"
-            android:textSize="30sp" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+        </androidx.recyclerview.widget.RecyclerView>
 
-    </FrameLayout>
+    </RelativeLayout>
+
 </layout>

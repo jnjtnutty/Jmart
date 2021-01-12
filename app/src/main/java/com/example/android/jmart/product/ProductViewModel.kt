@@ -134,7 +134,6 @@ class ProductViewModel(private val database: ProductDataDAO, application: Applic
                 Log.i("Product", "token get: ${token.value}")
                 getIphone(service)
             }
-
             override fun onFailure(call: Call<Api.LoginResponse>, t: Throwable) {
                 Toast.makeText(getApplication(), t.message, Toast.LENGTH_LONG).show()
             }
