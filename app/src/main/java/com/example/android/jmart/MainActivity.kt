@@ -1,5 +1,6 @@
 package com.example.android.jmart
 
+import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -14,7 +15,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: JmartMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
         binding = JmartMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
