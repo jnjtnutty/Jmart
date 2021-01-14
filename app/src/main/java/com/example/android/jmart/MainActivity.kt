@@ -6,23 +6,32 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.example.android.jmart.databinding.JmartMainBinding
+import com.example.android.jmart.network.SessionManager
 import com.example.android.jmart.product.ProductFragment
 import com.example.android.jmart.promotion.PromotionFragment
 import com.example.android.jmart.video.VideoFragment
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity: AppCompatActivity() {
+
     private lateinit var binding: JmartMainBinding
+    lateinit var sessionManager: SessionManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+        sessionManager = SessionManager(this)
+
         binding = JmartMainBinding.inflate(layoutInflater)
         val view = binding.root
+
         setContentView(view)
 
         val productFragment = ProductFragment()
         val promotionFragment = PromotionFragment()
         val videoFragment = VideoFragment()
+        val loginFragment = LoginFragment()
 
         makeCurrentFragment(productFragment)
         binding.bottomNavigation.setOnNavigationItemSelectedListener { it:MenuItem->
@@ -30,6 +39,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.ic_product -> makeCurrentFragment(productFragment)
                 R.id.ic_promotion -> makeCurrentFragment(promotionFragment)
                 R.id.ic_video -> makeCurrentFragment(videoFragment)
+                R.id.ic_login -> makeCurrentFragment(loginFragment)
             }
             true
         }

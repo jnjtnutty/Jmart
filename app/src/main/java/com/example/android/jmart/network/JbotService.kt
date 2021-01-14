@@ -1,4 +1,4 @@
-package com.example.android.jmart.network
+package network
 
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -7,9 +7,11 @@ import java.security.cert.X509Certificate
 import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
-object JbotService {
 
-    private const val BASE_URL = "https://fibo.jaymart.org/api/"
+
+class JbotService {
+
+    private val BASE_URL = "https://fibo.jaymart.org/api/"
 
     fun getUnsafeOkHttpClient(): OkHttpClient {
         val x509TrustManager = object: X509TrustManager {
@@ -35,15 +37,14 @@ object JbotService {
 
         return builder.build()
     }
-
-    val instance: Api by lazy {
-        val retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(getUnsafeOkHttpClient())
-            .build()
-
-        retrofit.create(Api::class.java)
+    private fun buildRetrofit(): Retrofit {
+        return Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(getUnsafeOkHttpClient())
+                .build()
+    }
+    val retrofitService : Api by lazy{
+        buildRetrofit().create(Api::class.java)
     }
 }
-

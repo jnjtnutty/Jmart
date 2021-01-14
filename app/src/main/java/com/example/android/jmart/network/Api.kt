@@ -1,23 +1,16 @@
-package com.example.android.jmart.network
+package network
 
-import com.google.gson.JsonObject
+import com.example.android.jmart.data.LoginResponse
+import com.example.android.jmart.data.MobileSub
+import com.example.android.jmart.data.Promotion
 import retrofit2.Call
 import retrofit2.http.*
-
 
 interface Api {
 
     data class LoginInfo(
-        var email: String,
-        var password: String
-    )
-    data class LoginResponse(
-        val displayName: String,
-        val token: String
-    )
-    data class MobileSubResponse(
-        val display: String,
-        val imageNormal: String
+            var email: String,
+            var password: String
     )
 
     @Headers("Content-Type: application/json")
@@ -25,6 +18,9 @@ interface Api {
     fun getToken(@Body userData: LoginInfo): Call<LoginResponse>
 
     @GET("mobileSub")
-    fun getMobileSub(@Header("Authorization") authHeader: String?): Call<JsonObject>
+    fun getMobileSub(@Header("Authorization") authHeader: String?): Call<MobileSub>
+
+    @GET("promotion")
+    fun getPromotion(@Header("Authorization") authHeader: String?): Call<Promotion>
 
 }
