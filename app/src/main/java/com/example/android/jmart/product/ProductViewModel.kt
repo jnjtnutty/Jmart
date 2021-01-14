@@ -28,6 +28,16 @@ class ProductViewModel(private val database: ProductDataDAO, application: Applic
         return GetMobile(getApplication()).getMobile()
     }
 
+    fun saveDataToProductDatabase(mobiles: List<sub>){
+        uiScope.launch {
+            for( mb in mobiles)
+            {
+
+            }
+            data.value = dataManager.getProductFromDatabase()
+        }
+    }
+
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()

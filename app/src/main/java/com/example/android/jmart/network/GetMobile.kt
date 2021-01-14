@@ -17,7 +17,7 @@ class GetMobile(context: Context) {
     private val sessionManager: SessionManager = SessionManager(context)
     var _context = context
 
-    fun getMobile(): LiveData<sub> {
+    fun getMobile(): MutableLiveData<sub> {
         Log.i("print", "_token = ${sessionManager.fetchAuthToken()}")
 
         var data: MutableLiveData<sub> = MutableLiveData()
@@ -26,8 +26,9 @@ class GetMobile(context: Context) {
             Callback<MobileSub> {
             override fun onResponse(call: Call<MobileSub>, response: Response<MobileSub>) {
                 if (response.isSuccessful) {
-                    data.value = response.body()?.mobileSub05
+                    data.setValue(response.body()?.mobileSub05)
                     Log.i("print", "modile data : ${data.value}")
+
                 } else {
                     Toast.makeText(_context, "Please login", Toast.LENGTH_SHORT).show()
                 }
@@ -37,6 +38,7 @@ class GetMobile(context: Context) {
                 Log.i("print", t.message.toString())
             }
         })
+        Log.i("print","data out of func : ${data.value}")
         return data
     }
 }
