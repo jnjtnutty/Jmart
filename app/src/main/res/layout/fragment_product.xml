@@ -14,6 +14,14 @@
         tools:context=".product.ProductFragment"
         android:orientation="horizontal"
         android:layout_margin="1dp">
+        <TextView
+            android:id="@+id/iphoneText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Iphone : "
+            android:layout_marginTop="50sp"
+            android:textSize="20sp">
+        </TextView>
 
 <!--        <androidx.recyclerview.widget.RecyclerView-->
 <!--            android:id="@+id/recycleView"-->

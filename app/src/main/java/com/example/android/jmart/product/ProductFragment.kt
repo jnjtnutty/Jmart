@@ -9,16 +9,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import com.example.android.jmart.R
+import com.example.android.jmart.data.MobileSub
+import com.example.android.jmart.data.sub
 import com.example.android.jmart.database.ProductDatabase
 import com.example.android.jmart.databinding.FragmentProductBinding
+import com.example.android.jmart.network.GetMobile
 import com.example.android.jmart.network.SessionManager
 
 
 class ProductFragment : Fragment() {
-
-//    private val sessionManager: SessionManager = SessionManager(context)
+    var mobile: MutableLiveData<sub> = MutableLiveData()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,12 +46,7 @@ class ProductFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.productViewModel = productViewModel
 
-
-
-//        binding.recycleView.apply{
-//            layoutManager = LinearLayoutManager(activity)
-//            adapter = ListAdapter(ListMobile)
-//        }
+        binding.iphoneText.text = productViewModel.getIphone().value.toString()
 
         return binding.root
     }

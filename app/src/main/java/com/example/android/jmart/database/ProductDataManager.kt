@@ -22,25 +22,25 @@ class ProductDataManager(private val database: ProductDataDAO) {
     }
 
     suspend fun clear(){
-        Log.i("Product", "clear data")
+        Log.i("print", "clear data")
         withContext(Dispatchers.IO){
             database.clear()
         }
     }
     suspend fun update(product: ProductData){
-        Log.i("Product", "Update data")
+        Log.i("print", "Update data")
         withContext(Dispatchers.IO){
             database.update(product)
         }
     }
     suspend fun insert(product: ProductData){
-        Log.i("Product", "insert data")
+        Log.i("print", "insert data")
         withContext(Dispatchers.IO){
             database.insert(product)
         }
     }
     suspend fun getProductFromDatabase():  ProductData? {
-        Log.i("Product", "getProductFromDatabase")
+        Log.i("print", "getProductFromDatabase")
         return withContext(Dispatchers.IO) {
             val product = database.getProduct()
 

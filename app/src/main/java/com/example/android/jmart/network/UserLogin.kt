@@ -20,8 +20,6 @@ class UserLogin(context: Context) {
                 val loginResponse = response.body()
                 sessionManager.saveAuthToken(loginResponse!!.token)
                 Log.i("print", "token : $loginResponse")
-
-//                GetMobile(contextLocal).getMobile()
             }
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                 Log.i("print", t.message.toString())

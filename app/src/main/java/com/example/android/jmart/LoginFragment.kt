@@ -23,8 +23,7 @@ class LoginFragment : Fragment() {
 
         binding.loginButton.setOnClickListener {
             UserLogin(requireContext()).userLogin()
-            GetPromotion(requireContext()).getPro()
-            GetMobile(requireContext()).getMobile()
+
         }
 
         return binding.root

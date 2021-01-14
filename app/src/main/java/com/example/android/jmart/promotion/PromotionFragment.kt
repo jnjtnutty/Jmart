@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.android.jmart.databinding.FragmentPromotionBinding
+import com.example.android.jmart.network.GetPromotion
 
 class PromotionFragment : Fragment() {
 
@@ -18,6 +19,8 @@ class PromotionFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentPromotionBinding.inflate(layoutInflater)
+
+        GetPromotion(requireContext()).getPro()
 
         return binding.root
     }

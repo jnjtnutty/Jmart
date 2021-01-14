@@ -3,9 +3,11 @@ package com.example.android.jmart.product
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
+import com.example.android.jmart.data.sub
 import com.example.android.jmart.database.ProductData
 import com.example.android.jmart.database.ProductDataDAO
 import com.example.android.jmart.database.ProductDataManager
+import com.example.android.jmart.network.GetMobile
 import kotlinx.coroutines.*
 import java.util.*
 
@@ -20,6 +22,10 @@ class ProductViewModel(private val database: ProductDataDAO, application: Applic
     init {
         initializeProduct()
         Log.i("print", "Product ViewModel created")
+    }
+
+    fun getIphone() : LiveData<sub> {
+        return GetMobile(getApplication()).getMobile()
     }
 
     override fun onCleared() {
