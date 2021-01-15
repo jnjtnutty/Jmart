@@ -1,17 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FFEEEEEE"
-    tools:context=".promotion.PromotionFragment">
-        <TextView
-            android:id="@+id/promotionText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:textSize="30sp"
-            android:textColor="@color/black"
-            android:text="Promotion" />
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="promotionViewModel"
+            type="com.example.android.jmart.promotion.PromotionViewModel" />
+    </data>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFEEEEEE"
+            tools:context=".promotion.PromotionFragment">
 
-</FrameLayout>
+            <TextView
+                android:id="@+id/promotionText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10sp"
+                android:text="Promotion"
+                android:textColor="@color/black"
+                android:textSize="30sp" />
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/promotionText"
+                android:layout_marginTop="0dp" />
+
+        </RelativeLayout>
+</layout>

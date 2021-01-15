@@ -7,13 +7,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.android.jmart.data.sub
 import com.example.android.jmart.databinding.FragmentLoginBinding
 import com.example.android.jmart.network.GetMobile
-import com.example.android.jmart.network.GetPromotion
 import com.example.android.jmart.network.UserLogin
-import com.example.android.jmart.product.ProductFragment
-import com.example.android.jmart.product.ProductViewModel
 
 class LoginFragment : Fragment() {
 
@@ -24,7 +20,7 @@ class LoginFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         binding = FragmentLoginBinding.inflate(layoutInflater)
 

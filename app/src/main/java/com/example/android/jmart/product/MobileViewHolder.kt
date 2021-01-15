@@ -1,6 +1,5 @@
 package com.example.android.jmart.product
 
-import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -9,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.android.jmart.R
 import com.example.android.jmart.database.ProductData
-import java.net.URL
 
 
 class MobileViewHolder(inflater: LayoutInflater, parent: ViewGroup):
@@ -32,7 +30,7 @@ class MobileViewHolder(inflater: LayoutInflater, parent: ViewGroup):
                 .load(iphone.imageNormal)
                 .override(150, 150)
                 .into(mImageView!!)
-        };
+        }
     }
 
 }

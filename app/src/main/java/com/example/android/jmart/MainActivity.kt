@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
+import com.example.android.jmart.database.ProductDataDAO
+import com.example.android.jmart.database.ProductDatabase
 import com.example.android.jmart.databinding.JmartMainBinding
 import com.example.android.jmart.network.SessionManager
 import com.example.android.jmart.product.ProductFragment
@@ -17,10 +19,16 @@ class MainActivity: AppCompatActivity() {
     private lateinit var binding: JmartMainBinding
     lateinit var sessionManager: SessionManager
 
+    private lateinit var dataSource: ProductDataDAO
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT
+
+        dataSource = ProductDatabase.getInstance(application).productDatabaseDao
+
         sessionManager = SessionManager(this)
 
         binding = JmartMainBinding.inflate(layoutInflater)
@@ -28,8 +36,8 @@ class MainActivity: AppCompatActivity() {
 
         setContentView(view)
 
-        val productFragment = ProductFragment()
-        val promotionFragment = PromotionFragment()
+        val productFragment = ProductFragment(dataSource)
+        val promotionFragment = PromotionFragment(dataSource)
         val videoFragment = VideoFragment()
         val loginFragment = LoginFragment()
 

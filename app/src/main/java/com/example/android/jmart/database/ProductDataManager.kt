@@ -29,16 +29,23 @@ class ProductDataManager(private val database: ProductDataDAO) {
             database.insertProduct(product)
         }
     }
-    suspend fun getProductFromDatabase():  ProductData? {
+    suspend fun getProductFromDatabase(): ProductData {
         return withContext(Dispatchers.IO) {
             val product = database.getProduct()
 
             product
         }
     }
-    suspend fun getProductAllFromDatabase(): List<ProductData?> {
+//    suspend fun getProductAllFromDatabase(): List<ProductData?> {
+//        return withContext(Dispatchers.IO) {
+//            val listProduct = database.getAllProduct()
+//
+//            listProduct
+//        }
+//    }
+    suspend fun getPromotionAllFromDatabase(): List<PromotionPicData> {
         return withContext(Dispatchers.IO) {
-            val listProduct = database.getAllProduct()
+            val listProduct = database.getAllPro()
 
             listProduct
         }

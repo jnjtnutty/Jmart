@@ -21,15 +21,15 @@ import com.example.android.jmart.databinding.FragmentProductBinding
 
 
 
-class ProductFragment : Fragment() {
+class ProductFragment(dataSource: ProductDataDAO) : Fragment() {
 
     lateinit var application: Application
-
-    private lateinit var dataSource: ProductDataDAO
 
     private lateinit var productViewModel: ProductViewModel
 
     lateinit var binding: FragmentProductBinding
+
+    var _dataSource = dataSource
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,9 +38,7 @@ class ProductFragment : Fragment() {
 
         application = requireNotNull(this.activity).application
 
-        dataSource = ProductDatabase.getInstance(application)?.productDatabaseDao
-
-        productViewModel = ProductViewModel(dataSource!!, application)
+        productViewModel = ProductViewModel(_dataSource, application)
 
         binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_product, container, false
@@ -65,7 +63,7 @@ class ProductFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        val productAll = dataSource.getAllProduct()
+        val productAll = _dataSource.getAllProduct()
         binding.recyclerView.apply {
             layoutManager = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
             adapter = ListAdapter(productAll)

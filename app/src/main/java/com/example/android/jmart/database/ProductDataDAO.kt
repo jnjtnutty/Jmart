@@ -24,4 +24,10 @@ interface ProductDataDAO {
     @Query("SELECT * FROM product_table ORDER BY productId DESC LIMIT 1")
     fun getProduct(): ProductData
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertPromotion(promotion: PromotionPicData)
+
+    @Query("SELECT * FROM promotion_url ORDER BY imageId ")
+    fun getAllPro(): List<PromotionPicData>
+
 }
