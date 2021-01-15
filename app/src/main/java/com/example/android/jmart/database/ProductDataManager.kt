@@ -3,6 +3,7 @@ package com.example.android.jmart.database
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.example.android.jmart.product.ProductViewModel
@@ -24,7 +25,6 @@ class ProductDataManager(private val database: ProductDataDAO) {
         }
     }
     suspend fun insert(product: ProductData){
-        Log.i("print", "database : $database")
         withContext(Dispatchers.IO){
             database.insertProduct(product)
         }
@@ -34,6 +34,13 @@ class ProductDataManager(private val database: ProductDataDAO) {
             val product = database.getProduct()
 
             product
+        }
+    }
+    suspend fun getProductAllFromDatabase(): List<ProductData?> {
+        return withContext(Dispatchers.IO) {
+            val listProduct = database.getAllProduct()
+
+            listProduct
         }
     }
 }

@@ -27,7 +27,7 @@ class GetMobile(context: Context) {
             override fun onResponse(call: Call<MobileSub>, response: Response<MobileSub>) {
                 if (response.isSuccessful) {
                     data.setValue(response.body()?.mobileSub05)
-                    Log.i("print", "modile data : ${data.value}")
+                    Log.i("print", "api : ${data.value}")
 
                 } else {
                     Toast.makeText(_context, "Please login", Toast.LENGTH_SHORT).show()
@@ -38,7 +38,6 @@ class GetMobile(context: Context) {
                 Log.i("print", t.message.toString())
             }
         })
-        Log.i("print","data out of func : ${data.value}")
         return data
     }
 }

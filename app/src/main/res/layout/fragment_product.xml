@@ -19,10 +19,11 @@
             android:id="@+id/iphoneText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Iphone"
             android:layout_marginTop="10sp"
-            android:textSize="30sp"
-            android:textColor="@color/black" />
+            android:text="Iphone"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
         <Button
             android:id="@+id/clearData"
             android:layout_width="wrap_content"
@@ -32,7 +33,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
-            android:text="clear" />
+            android:text="Clear" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

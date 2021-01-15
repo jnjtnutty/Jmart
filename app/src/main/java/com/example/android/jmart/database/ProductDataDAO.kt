@@ -1,6 +1,7 @@
 package com.example.android.jmart.database
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.room.*
 
 @Dao
@@ -18,7 +19,7 @@ interface ProductDataDAO {
     fun clear()
 
     @Query("SELECT * FROM product_table ORDER BY productId DESC")
-    fun getAllProduct(): LiveData<List<ProductData>>
+    fun getAllProduct(): List<ProductData>
 
     @Query("SELECT * FROM product_table ORDER BY productId DESC LIMIT 1")
     fun getProduct(): ProductData

@@ -1,71 +1,76 @@
 package com.example.android.jmart.product
 
 
+import android.app.Application
 import android.content.Context
 import android.os.Bundle
+import android.provider.SyncStateContract.Helpers.update
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.liveData
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.android.jmart.R
-import com.example.android.jmart.data.sub
-import com.example.android.jmart.database.ProductData
 import com.example.android.jmart.database.ProductDataDAO
+import com.example.android.jmart.database.ProductDataManager
 import com.example.android.jmart.database.ProductDatabase
 import com.example.android.jmart.databinding.FragmentProductBinding
 
 
 
 class ProductFragment : Fragment() {
-    private val iphoneList: List<ProductData> = listOf(ProductData(1, "256GB", ";http", "123"),
-        ProductData(2, "256GB", ";http", "123"),
-        ProductData(3, "256GB", ";http", "123"),
-        ProductData(4, "256GB", ";http", "123"),
-        ProductData(5, "256GB", ";http", "123"))
 
+    lateinit var application: Application
 
+    private lateinit var dataSource: ProductDataDAO
 
-    lateinit var dataSource: ProductDataDAO
+    private lateinit var productViewModel: ProductViewModel
 
-        override fun onCreateView(
+    lateinit var binding: FragmentProductBinding
+
+    override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-            val binding: FragmentProductBinding = DataBindingUtil.inflate(
-                inflater, R.layout.fragment_product, container, false
-            )
+        application = requireNotNull(this.activity).application
 
-            val application = requireNotNull(this.activity).application
+        dataSource = ProductDatabase.getInstance(application)?.productDatabaseDao
 
-            dataSource = ProductDatabase.getInstance(application)?.productDatabaseDao
+        productViewModel = ProductViewModel(dataSource!!, application)
 
-            val productViewModel = ProductViewModel(dataSource!!, application)
+        binding = DataBindingUtil.inflate(
+            inflater, R.layout.fragment_product, container, false
+        )
 
-            binding.lifecycleOwner = this
-            binding.productViewModel = productViewModel
+        binding.lifecycleOwner = this
+        binding.productViewModel = productViewModel
 
-            val listAdapter = ListAdapter(iphoneList)
-            binding.recyclerView.apply {
-                layoutManager = GridLayoutManager(activity, 2, GridLayoutManager.HORIZONTAL, false)
-                adapter = listAdapter
-                binding.clearData.setOnClickListener {
-                    productViewModel.onClear()
-                }
-            }
-            productViewModel.getIphone().observeForever {
-                Log.i("print", "iphone api : $it")
-                var mobiles = it
-                productViewModel.saveDataToProductDatabase(mobiles)
-            }
-            return binding.root
+        binding.clearData.setOnClickListener {
+            productViewModel.onClear()
+            productViewModel.OnStopProduct()
         }
 
+        productViewModel.getIphone().observeForever {
+            Log.i("print", "iphone api : $it")
+            productViewModel.saveDataToProductDatabase(it)
+        }
+
+        return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        val productAll = dataSource.getAllProduct()
+        binding.recyclerView.apply {
+            layoutManager = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
+            adapter = ListAdapter(productAll)
+        }
+
+    }
 }
 

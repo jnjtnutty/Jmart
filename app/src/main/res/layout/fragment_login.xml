@@ -18,11 +18,12 @@
         </Button>
 
         <TextView
+            android:id="@+id/statusText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/loginButton"
             android:layout_marginTop="0dp"
-            android:text="Status"
+            android:text="Login not Success"
             android:layout_centerInParent="true"
             android:textSize="20sp"></TextView>
 

@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.android.jmart.R
 import com.example.android.jmart.database.ProductData
 import java.net.URL
@@ -23,9 +24,15 @@ class MobileViewHolder(inflater: LayoutInflater, parent: ViewGroup):
     }
 
     fun bind(iphone: ProductData) {
+
         mMobileNameView?.text = iphone.display
-//        val url = URL(iphone.imageNormal)
-//        val bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream())
-//        mImageView?.setImageBitmap(bmp)
+
+        mImageView?.let {
+            Glide.with(it)
+                .load(iphone.imageNormal)
+                .override(150, 150)
+                .into(mImageView!!)
+        };
     }
+
 }

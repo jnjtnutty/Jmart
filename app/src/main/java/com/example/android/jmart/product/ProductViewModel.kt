@@ -22,32 +22,39 @@ class ProductViewModel(database: ProductDataDAO, application: Application) : And
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
     private val dataManager = ProductDataManager(database)
 
-    private val allProduct = database.getAllProduct()
-
     init {
-            initializeProduct()
+        initializeProduct()
     }
 
+    private fun initializeProduct() {
+        uiScope.launch {
+            data.value = dataManager.getProductFromDatabase()
+        }
+    }
 
     fun getIphone() : LiveData<sub> {
         return GetMobile(getApplication()).getMobile()
     }
 
-
     fun saveDataToProductDatabase(mobiles: sub) {
         uiScope.launch {
             val jsonMobiles: JsonObject = Gson().toJsonTree(mobiles).asJsonObject;
             var product: ProductData
-            for ((key, value) in jsonMobiles.entrySet()) {
-                if(key!="brand") {
+            var idIndex = 0
+            for ( (key, value) in jsonMobiles.entrySet() ) {
+                if( key!="brand" ) {
                     val valueObject: JsonObject = jsonMobiles.get(key).asJsonObject
-                    product = ProductData(model = valueObject.get("model").toString(),
-                        display = valueObject.get("display").toString(),
-                        imageNormal = valueObject.get("imageNormal").toString())
-                    dataManager.insert(product)
+                    if( valueObject.get("model").toString().replace("\"", "") != "disable" )
+                    {
+                        product = ProductData(productId = idIndex,model = valueObject.get("model").toString().replace("\"", ""),
+                            display = valueObject.get("display").toString().replace("\"", ""),
+                            imageNormal = valueObject.get("imageNormal").toString().replace("\"", ""))
+                        dataManager.insert(product)
+                        data.value = dataManager.getProductFromDatabase()
+                        Log.i("print","data -> ${data.value}")
+                        idIndex +=1
+                    }
                 }
-                data.value = dataManager.getProductFromDatabase()
-                Log.i("print","data -> ${data.value}")
             }
         }
     }
@@ -57,13 +64,6 @@ class ProductViewModel(database: ProductDataDAO, application: Application) : And
         viewModelJob.cancel()
         Log.i("print", "Product ViewModel destroyed")
     }
-
-    private fun initializeProduct() {
-        uiScope.launch {
-            data.value = dataManager.getProductFromDatabase()
-        }
-    }
-
 
     fun OnStopProduct(){
         Log.i("print", "Onstop data")
