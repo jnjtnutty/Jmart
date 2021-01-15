@@ -8,33 +8,47 @@ import com.example.android.jmart.database.ProductData
 import com.example.android.jmart.database.ProductDataDAO
 import com.example.android.jmart.database.ProductDataManager
 import com.example.android.jmart.network.GetMobile
+import com.google.gson.Gson
+import com.google.gson.JsonObject
 import kotlinx.coroutines.*
 import java.util.*
 
-class ProductViewModel(private val database: ProductDataDAO, application: Application) : AndroidViewModel(
-        application) {
+class ProductViewModel(database: ProductDataDAO, application: Application) : AndroidViewModel(
+    application
+) {
 
     private var data = MutableLiveData<ProductData?>()
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
     private val dataManager = ProductDataManager(database)
 
+    private val allProduct = database.getAllProduct()
+
     init {
-        initializeProduct()
-        Log.i("print", "Product ViewModel created")
+            initializeProduct()
     }
+
 
     fun getIphone() : LiveData<sub> {
         return GetMobile(getApplication()).getMobile()
     }
 
-    fun saveDataToProductDatabase(mobiles: List<sub>){
-        uiScope.launch {
-            for( mb in mobiles)
-            {
 
+    fun saveDataToProductDatabase(mobiles: sub) {
+        uiScope.launch {
+            val jsonMobiles: JsonObject = Gson().toJsonTree(mobiles).asJsonObject;
+            var product: ProductData
+            for ((key, value) in jsonMobiles.entrySet()) {
+                if(key!="brand") {
+                    val valueObject: JsonObject = jsonMobiles.get(key).asJsonObject
+                    product = ProductData(model = valueObject.get("model").toString(),
+                        display = valueObject.get("display").toString(),
+                        imageNormal = valueObject.get("imageNormal").toString())
+                    dataManager.insert(product)
+                }
+                data.value = dataManager.getProductFromDatabase()
+                Log.i("print","data -> ${data.value}")
             }
-            data.value = dataManager.getProductFromDatabase()
         }
     }
 
@@ -50,15 +64,6 @@ class ProductViewModel(private val database: ProductDataDAO, application: Applic
         }
     }
 
-
-    fun onStartProduct(){
-        Log.i("print", "onStartProduct new data")
-        uiScope.launch {
-            val newProduct = ProductData(1, "iphone12", 64, 21000)
-            dataManager.insert(newProduct)
-            data.value = dataManager.getProductFromDatabase()
-        }
-    }
 
     fun OnStopProduct(){
         Log.i("print", "Onstop data")

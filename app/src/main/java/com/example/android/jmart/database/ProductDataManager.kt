@@ -11,16 +11,6 @@ import kotlinx.coroutines.withContext
 
 class ProductDataManager(private val database: ProductDataDAO) {
 
-    private val allProduct = database.getAllProduct()
-
-    val allProductString = Transformations.map(allProduct) { allProduct ->
-        var productString = ""
-        for (product in allProduct) {
-            productString += product.productName + "\n"
-        }
-        return@map productString
-    }
-
     suspend fun clear(){
         Log.i("print", "clear data")
         withContext(Dispatchers.IO){
@@ -34,13 +24,12 @@ class ProductDataManager(private val database: ProductDataDAO) {
         }
     }
     suspend fun insert(product: ProductData){
-        Log.i("print", "insert data")
+        Log.i("print", "database : $database")
         withContext(Dispatchers.IO){
-            database.insert(product)
+            database.insertProduct(product)
         }
     }
     suspend fun getProductFromDatabase():  ProductData? {
-        Log.i("print", "getProductFromDatabase")
         return withContext(Dispatchers.IO) {
             val product = database.getProduct()
 

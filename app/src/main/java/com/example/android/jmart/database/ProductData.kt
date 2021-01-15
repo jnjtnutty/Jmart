@@ -7,14 +7,15 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "product_table")
 data class ProductData(
         @PrimaryKey(autoGenerate = true)
-        var productId: Long = -1,
+        @ColumnInfo(name = "productId")
+        var productId: Int = 0,
 
         @ColumnInfo(name = "productName")
-        val productName: String?=null,
+        val model: String?=null,
 
         @ColumnInfo(name = "memory")
-        val memory: Int?= null,
+        val display: String?= null,
 
         @ColumnInfo(name = "price")
-        val price: Int?= null,
+        val imageNormal: String?= null
 )
